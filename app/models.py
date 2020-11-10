@@ -10,3 +10,7 @@ class Products(models.Model):
     tym = models.DateTimeField(auto_now_add=True, auto_now=False)
     utym = models.DateTimeField(auto_now_add=False, auto_now=True)
     offer = models.BooleanField(default=False)
+
+
+# class Cartitem(models.Model):
+#     i

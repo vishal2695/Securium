@@ -11,7 +11,13 @@
         <h4>{{item.title}}</h4>
         <p>{{item.desc}}</p>
         <hr>
-        <h1><p>Rs.&nbsp;{{item.price}}</p></h1><hr>
+        <h1><p>Rs.&nbsp;{{item.price}}</p></h1>
+        {% if item.offer %}
+        <button class="btn btn-danger">Offer</button>
+        <p>pay with credit card to save 10%</p>
+        {% endif %}
+        <hr>
+
         <div><button class="btn btn-info form-control">Add to Cart</button></div>
         <div style="margin-top: 30px;"><button class="btn btn-success form-control">Order Now</button></div>
         

@@ -8,18 +8,17 @@
         {% for item in items %}
         <div class="col-sm-4">
             <div class="card m-2 bg-light">
-                <!-- {% if item.offer %}
-                <button class="col-sm-3 btn-danger">Offer</button>
-                {% endif %} -->
                 <img src="{{item.pics.url}}" alt="pizza" class="card-img-top" height="250px">
             </div>  
-            <div class="text-center">
-                <h3>{{item.title}}</h3>
-                <p>{{item.desc}}</p>
-                <h4 class="offset-8">Rs&nbsp;{{item.price}}</h4>
+            <div >
+                <h3 class="text-center">{{item.title}}</h3>
+                <p class="text-center">{{item.desc}}</p>
+                <h4 class="offset-9">{{item.price}}</h4>
+               
             </div> 
             <div style="margin-bottom: 50px;"><button class="btn btn-info">Add to Cart</button>
-                <button class="offset-5 btn btn-success"><a href="{% url 'show' item.id %}" style="text-decoration: none; color: whitesmoke;">Buy Now</a></button></div>  
+                <button class="offset-5 btn btn-success">
+                    <a href="{% url 'show' item.id %}" style="text-decoration: none; color: whitesmoke;">Buy Now</a></button></div>  
         </div>
         {% endfor %}
     </div>

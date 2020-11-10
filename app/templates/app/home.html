@@ -18,7 +18,8 @@
                 <p>{{item.desc}}</p>
                 <h4 class="offset-8">Rs&nbsp;{{item.price}}</h4>
             </div> 
-            <div style="margin-bottom: 50px;"><button class="btn btn-info">Add to Cart</button><button class="offset-5 btn btn-success">Buy Now</button></div>  
+            <div style="margin-bottom: 50px;"><button class="btn btn-info">Add to Cart</button>
+                <button class="offset-5 btn btn-success"><a href="{% url 'show' item.id %}" style="text-decoration: none; color: whitesmoke;">Buy Now</a></button></div>  
         </div>
         {% endfor %}
     </div>

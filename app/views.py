@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.contrib.auth.models import User, auth
 from .forms import userloginfrm, usersignupfrm
 from .models import Products
@@ -8,6 +8,11 @@ from django.contrib import messages
 def home(request):
     item = Products.objects.all()
     return render(request, 'app/home.html', {'items':item})
+
+
+def preview(request, id):
+    item = get_object_or_404(Products, id=id)
+    return render(request, 'app/show.html', {'item':item})
 
 
 def userlogin(request):

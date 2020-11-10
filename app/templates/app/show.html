@@ -1,0 +1,23 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+<h1 class="text-info">{{item.title}}</h1>
+
+<div class="row">
+    <div class="col-sm-8">
+        <img src="{{item.pics.url}}" alt="Pizza" height="500px">
+    </div>
+    <div class="col-sm-3 offset-1">
+        <h4>{{item.title}}</h4>
+        <p>{{item.desc}}</p>
+        <hr>
+        <h1><p>Rs.&nbsp;{{item.price}}</p></h1><hr>
+        <div><button class="btn btn-info form-control">Add to Cart</button></div>
+        <div style="margin-top: 30px;"><button class="btn btn-success form-control">Order Now</button></div>
+        
+    </div>
+
+</div>
+
+
+{% endblock content %}

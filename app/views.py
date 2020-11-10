@@ -1,11 +1,13 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.models import User, auth
 from .forms import userloginfrm, usersignupfrm
+from .models import Products
 from django.contrib import messages
 # Create your views here.
 
 def home(request):
-    return render(request, 'app/home.html')
+    item = Products.objects.all()
+    return render(request, 'app/home.html', {'items':item})
 
 
 def userlogin(request):

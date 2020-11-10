@@ -1,0 +1,57 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>HONEYBEE</title>
+</head>
+<body>
+    <div>
+        {% include 'app/bar.html' %}       
+    </div>
+<div class="container page-wrapper">
+    
+<div style="background-color: rgb(82, 201, 82);" class="my-2 text-center">
+</div>
+<div>
+    {% block content %}
+
+
+
+    {% endblock content %}
+</div>
+</div>
+<br>
+
+<!-- <div class="page-wrapper">
+
+</div> -->
+ 
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-section text-center">
+            <p class="text-center mt-3">Contact Us</p>
+            <i class="far fa-envelope i-color"></i>
+            <i>honeybeeofficial2020@gmail.com</i>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        &copy; HONEYBEE | Designed by Vishal Dubey
+    </div>
+
+</div>
+
+
+
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+
+</body>
+</html>

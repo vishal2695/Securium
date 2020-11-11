@@ -1,0 +1,59 @@
+{% extends 'app/base.html' %}
+{% block content %}
+{% if items or ittem %}
+
+<div class="row">
+    <div class="col-sm-12">
+<table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Date of Adding</th>
+            <th scope="col">Price</th>
+            {% if items %}
+            <th scope="col">Action</th>
+            {% endif %}
+          </tr>
+        </thead>
+        
+        {% for item in items %}
+        <tbody>
+          <tr>
+            <th scope="row">{{item.items.title}}</th>
+            <td>{{item.ctym}}</td>
+            <td>{{item.items.price}}</td>
+            <td><a href="{% url 'remove' item.id %}">Remove</a></td>
+          </tr>
+          </tbody>
+          {% endfor %}
+          <tbody>
+            <tr>
+              <th scope="row">{{ittem.title}}</th>
+              <td></td>
+              <td>{{ittem.price}}</td>
+              <td></td>
+            </tr>
+            </tbody>
+          <tr>
+            <th scope="row"></th>
+            <td><h3>Total:</h3><hr></td>
+            <td><h3>{{total}}&nbsp;Rs</h3><hr></td>
+            <td><a href=""></a></td>
+          </tr>
+      </table>
+      
+      <div class="offset-4">
+        {% if items %}
+        <button class="btn btn-warning">
+        <a href="{% url 'home' %}" style="text-decoration: none; color: white">Add More Items</a></button>
+        {% endif %}
+        <button class="btn btn-success offset-1"><a href="{% url 'end' %}" style="text-decoration: none; color: white">Pay Now</a></button>
+      </div>
+      
+      </div>
+</div>
+    {% else %}
+      <div class="text-center mt-5"><h2 style="font-size: xx-large;">Your cart is empty..!! keep your shopping now..</h2>
+        <button class="mt-5 btn btn-warning"><a href="{% url 'home' %}" style="text-decoration: none; color: white;">Continue Shopping</a></button></div> 
+    {% endif %}
+{% endblock content %}

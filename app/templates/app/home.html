@@ -1,7 +1,14 @@
 {% extends 'app/base.html' %}
 {% block content %}
+ {% if messages %}
+<div class="text-center">
+    {% for message in messages %}<span class="btn btn-success form-control" style="font-size: large;">{{message}}</span>{% endfor %}
+</div>
+ {% endif %}
+
 
 <div class="container-fluid bg-info my-5 text-center">
+    
     <h1>Food Items</h1>
     </div>
     <div class="row">
@@ -10,13 +17,13 @@
             <div class="card m-2 bg-light">
                 <img src="{{item.pics.url}}" alt="pizza" class="card-img-top" height="250px">
             </div>  
-            <div >
+            <div>
                 <h3 class="text-center">{{item.title}}</h3>
                 <p class="text-center">{{item.desc}}</p>
-                <h4 class="offset-9">{{item.price}}</h4>
-               
-            </div> 
-            <div style="margin-bottom: 50px;"><button class="btn btn-info">Add to Cart</button>
+                <h4>Rs.&nbsp;{{item.price}}</h4>
+            </div>
+            <div style="margin-bottom: 50px;">
+                <button class="btn btn-info"><a href="{% url 'add' item.id %}" style="text-decoration: none; color: whitesmoke;">Add to Cart</a></button>
                 <button class="offset-5 btn btn-success">
                     <a href="{% url 'show' item.id %}" style="text-decoration: none; color: whitesmoke;">Buy Now</a></button></div>  
         </div>

@@ -11,28 +11,25 @@
       <li class="nav-item active">
         <a class="nav-link text-light" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
       </li>
-      
-      <li class="nav-item">
-        <a class="nav-link text-light" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="#">Pricing</a>
-      </li>{% endif %}
+      {% endif %}
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-items">
-        <a href="" class="nav-link text-light">Welcome,&nbsp; {{request.user.get_full_name|capfirst}}</a>
+        <a href="{% url 'cart' %}" class="nav-link text-light">Cart()</a>
       </li>
       {% if request.user.is_authenticated %}
+      <li class="nav-items">
+        <a href="" class="nav-link text-light">Welcome, &nbsp; {{request.user.get_full_name|capfirst}}</a>
+      </li>
       <li class="nav-items">
         <a href="{% url 'logout' %}" class="nav-link text-light">Logout</a>
       </li>
       {% else %}
       <li class="nav-items">
-        <a href="{% url 'signup' %}" class="nav-link ">Sign Up</a>
+        <a href="{% url 'signup' %}" class="nav-link text-light">Sign Up</a>
       </li>
       <li class="nav-items">
-        <a href="{% url 'login' %}" class="nav-link">Login</a>
+        <a href="{% url 'login' %}" class="nav-link text-light">Login</a>
       </li>
       {% endif %}
     </ul>

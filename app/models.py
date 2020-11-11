@@ -12,5 +12,7 @@ class Products(models.Model):
     offer = models.BooleanField(default=False)
 
 
-# class Cartitem(models.Model):
-#     i
+class Cartitem(models.Model):
+    items = models.ForeignKey(Products, on_delete=models.CASCADE)
+    cuser = models.ForeignKey(User, on_delete=models.CASCADE)
+    ctym = models.DateTimeField(auto_now_add=True, auto_now=False)

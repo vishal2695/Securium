@@ -1,18 +1,59 @@
-from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
+from django.shortcuts import render, HttpResponseRedirect, HttpResponse, get_object_or_404
 from django.contrib.auth.models import User, auth
 from .forms import userloginfrm, usersignupfrm
-from .models import Products
+from .models import Products, Cartitem
 from django.contrib import messages
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
-
+@login_required(login_url=('/'))
 def home(request):
     item = Products.objects.all()
     return render(request, 'app/home.html', {'items':item})
 
-
+@login_required(login_url=('/'))
 def preview(request, id):
     item = get_object_or_404(Products, id=id)
     return render(request, 'app/show.html', {'item':item})
+
+@login_required(login_url=('/'))
+def addcart(request, id):
+    product = get_object_or_404(Products, id=id)
+    cart = Cartitem.objects.create(items=product, cuser=request.user)
+    cart.save()
+    messages.success(request, 'Item is successfully added to your cart..!!')
+    return HttpResponseRedirect(reverse('home'))
+
+
+@login_required(login_url=('/'))
+def billing(request, id):
+    item = get_object_or_404(Products, id=id)
+    total = item.price
+    print(item.price)
+    return render(request, 'app/cart.html',{'ittem':item,'total':total})
+
+@login_required(login_url=('/'))
+def showcart(request):
+    items = Cartitem.objects.filter(cuser=request.user)
+    ff = len(items)
+    print(ff)
+    total = 0.00
+    for item in items:
+        total += float(item.items.price)
+        # new_total = 'total'
+        print(total)
+    print(total)
+    return render(request, 'app/cart.html', {'items':items, 'total':total})
+
+@login_required(login_url=('/'))
+def remove(request,id):
+    item = get_object_or_404(Cartitem, id=id)
+    item.delete()
+    return HttpResponseRedirect(reverse('cart'))
+
+@login_required(login_url=('/'))
+def end(request):
+    return render(request, 'app/success.html')
 
 
 def userlogin(request):

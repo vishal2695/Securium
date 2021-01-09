@@ -14,7 +14,7 @@ def home(request):
         request.session['key'] = 0
     items = Cartitem.objects.filter(cuser=request.user) 
     ff = len(items)
-    request.session['key'] =  ff
+    request.session['key'] = ff
     return render(request, 'app/home.html', {'items':item})
 
 @login_required(login_url=('/'))

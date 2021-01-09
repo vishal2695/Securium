@@ -15,7 +15,7 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-items">
-        <a href="{% url 'cart' %}" class="nav-link text-light">Cart Items</a>
+        <a href="{% url 'cart' %}" class="nav-link text-light">Cart({{request.session.key}})</a>
       </li>
       {% if request.user.is_authenticated %}
       <li class="nav-items">

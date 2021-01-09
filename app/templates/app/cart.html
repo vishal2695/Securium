@@ -1,6 +1,7 @@
 {% extends 'app/base.html' %}
 {% block content %}
 {% if items or ittem %}
+<div class="container">
 
 <div class="row">
     <div class="col-sm-12">
@@ -37,7 +38,7 @@
           <tr>
             <th scope="row"></th>
             <td><h3>Total:</h3><hr></td>
-            <td><h3>{{total}}&nbsp;Rs</h3><hr></td>
+            <td><h3>{{total}}&nbsp; Rs </h3><hr></td>
             <td><a href=""></a></td>
           </tr>
       </table>
@@ -56,4 +57,6 @@
       <div class="text-center mt-5"><h2 style="font-size: xx-large;">Your cart is empty..!! keep your shopping now..</h2>
         <button class="mt-5 btn btn-warning"><a href="{% url 'home' %}" style="text-decoration: none; color: white;">Continue Shopping</a></button></div> 
     {% endif %}
+
+</div>
 {% endblock content %}

@@ -1,5 +1,11 @@
 {% extends 'app/base.html' %}
+{% load static %}
 {% block content %}
+<div class="banner">
+    <img src="{% static 'image/sk.png' %}" alt="hello" class="banner-img">
+</div>
+<div class="container">
+
  {% if messages %}
 <div class="text-center">
     {% for message in messages %}<span class="btn btn-success form-control" style="font-size: large;">{{message}}</span>{% endfor %}
@@ -7,10 +13,10 @@
  {% endif %}
 
 
-<div class="container-fluid bg-info my-5 text-center">
+<div class="container-fluid bg-info my-2 text-center">
     
     <h1>Food Items</h1>
-    </div>
+</div>
     <div class="row">
         {% for item in items %}
         <div class="col-sm-4">
@@ -23,11 +29,12 @@
                 <h4>Rs.&nbsp;{{item.price}}</h4>
             </div>
             <div style="margin-bottom: 50px;">
+                {% if  %}
                 <button class="btn btn-info"><a href="{% url 'add' item.id %}" style="text-decoration: none; color: whitesmoke;">Add to Cart</a></button>
                 <button class="offset-5 btn btn-success">
                     <a href="{% url 'show' item.id %}" style="text-decoration: none; color: whitesmoke;">Buy Now</a></button></div>  
         </div>
         {% endfor %}
     </div>
-
+</div>
 {% endblock content %}

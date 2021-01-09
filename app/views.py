@@ -9,6 +9,12 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url=('/'))
 def home(request):
     item = Products.objects.all()
+    gg = request.session.get('key')
+    if gg == None:
+        request.session['key'] = 0
+    items = Cartitem.objects.filter(cuser=request.user) 
+    ff = len(items)
+    request.session['key'] =  ff
     return render(request, 'app/home.html', {'items':item})
 
 @login_required(login_url=('/'))
@@ -21,6 +27,10 @@ def addcart(request, id):
     product = get_object_or_404(Products, id=id)
     cart = Cartitem.objects.create(items=product, cuser=request.user)
     cart.save()
+    items = Cartitem.objects.filter(cuser=request.user) 
+    ff = len(items)
+    request.session['key'] =  ff
+    
     messages.success(request, 'Item is successfully added to your cart..!!')
     return HttpResponseRedirect(reverse('home'))
 
@@ -34,8 +44,10 @@ def billing(request, id):
 
 @login_required(login_url=('/'))
 def showcart(request):
-    items = Cartitem.objects.filter(cuser=request.user)
+    items = Cartitem.objects.filter(cuser=request.user) 
     ff = len(items)
+    request.session['key'] =  ff 
+    
     print(ff)
     total = 0.00
     for item in items:
@@ -90,9 +102,11 @@ def usersignup(request):
                 d = fm.cleaned_data['email']
                 e = fm.cleaned_data['password']
                 g = fm.cleaned_data['password2']
+                
                 if e == g:
                     f = User.objects.create_user(username=a, first_name=b, last_name=c, email=d, password=e)
                     f.save()
+                    request.session.create()
                     messages.success(request, 'You are Successfully Registered..!!')
                     return HttpResponseRedirect('/')
                 else:
